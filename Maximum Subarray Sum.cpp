@@ -17,7 +17,7 @@ int maxSubarraySum(int arr[], int n)
             maxsum=max(maxsum,sum);
         }
         else{
-            sum=sum+arr[i];
+            
             maxsum=max(maxsum,sum);
         }
     }
