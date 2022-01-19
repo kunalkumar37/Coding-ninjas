@@ -32,14 +32,14 @@ using namespace std;
 
 inline int power(int a, int b)
 {
-    int x = 1;
-    while (b)
-    {
-        if (b & 1) x *= a;
-        a *= a;
-        b >>= 1;
-    }
-    return x;
+	int x = 1;
+	while (b)
+	{
+		if (b & 1) x *= a;
+		a *= a;
+		b >>= 1;
+	}
+	return x;
 }
 
 template <typename Arg1>
@@ -47,32 +47,61 @@ void __f (const char* name, Arg1&& arg1) { cout << name << " : " << arg1 << endl
 template <typename Arg1, typename... Args>
 void __f (const char* names, Arg1&& arg1, Args&&... args)
 {
-    const char* comma = strchr (names + 1, ',');
-    cout.write (names, comma - names) << " : " << arg1 << " | "; __f (comma + 1, args...);
+	const char* comma = strchr (names + 1, ',');
+	cout.write (names, comma - names) << " : " << arg1 << " | "; __f (comma + 1, args...);
 }
 
 const int N = 200005;
 
 void solve() {
-    
+	int n;
+	cin>>n;
+	int k;
+	int arr[n];
+	for(int i=0;i<n;i++)
+	{
+		cin>>arr[i];
+	}
+	int ans[32]={0};
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<32;j++)
+		{
+			k=arr[i]>>j;
+			if(k&1)
+			{
+				ans[j]++;
+			}
+		}
+	}
+
+	int ans1=0;
+	for(int i=0;i<32;i++)
+	{
+		if(ans[i]>1)
+		{
+			ans1=ans1+pow(2,i);
+		}
+	}
+	cout<<ans1<<endl;
 }
 
 int32_t main()
 {
-    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+	ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 
 #ifndef ONLINE_JUDGE
-    freopen("input.txt",  "r",  stdin);
-    freopen("output.txt", "w", stdout);
+	freopen("input.txt",  "r",  stdin);
+	freopen("output.txt", "w", stdout);
 #endif
 
-    clock_t z = clock();
+	clock_t z = clock();
 
-    int t = 1;
-    // cin >> t;
-    while (t--) solve();
+	int t = 1;
+	 cin >> t;
+	while (t--) solve();
 
-    cerr << "Run Time : " << ((double)(clock() - z) / CLOCKS_PER_SEC);
+	cerr << "Run Time : " << ((double)(clock() - z) / CLOCKS_PER_SEC);
 
-    return 0;
+	return 0;
 }

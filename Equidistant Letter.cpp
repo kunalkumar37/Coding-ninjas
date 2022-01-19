@@ -32,14 +32,14 @@ using namespace std;
 
 inline int power(int a, int b)
 {
-    int x = 1;
-    while (b)
-    {
-        if (b & 1) x *= a;
-        a *= a;
-        b >>= 1;
-    }
-    return x;
+	int x = 1;
+	while (b)
+	{
+		if (b & 1) x *= a;
+		a *= a;
+		b >>= 1;
+	}
+	return x;
 }
 
 template <typename Arg1>
@@ -47,32 +47,67 @@ void __f (const char* name, Arg1&& arg1) { cout << name << " : " << arg1 << endl
 template <typename Arg1, typename... Args>
 void __f (const char* names, Arg1&& arg1, Args&&... args)
 {
-    const char* comma = strchr (names + 1, ',');
-    cout.write (names, comma - names) << " : " << arg1 << " | "; __f (comma + 1, args...);
+	const char* comma = strchr (names + 1, ',');
+	cout.write (names, comma - names) << " : " << arg1 << " | "; __f (comma + 1, args...);
 }
 
 const int N = 200005;
 
 void solve() {
-    
+	
+string str;
+cin>>str;
+vector<char>c;
+unordered_map<char ,int> m;
+for(int i=0;str[i];i++)
+
+{
+	if(m.find(str[i])==m.end())
+	{
+		m.insert(make_pair(str[i],1));
+
+	}
+	else
+	{
+		m[str[i]]++;
+	}
+}
+
+for(auto &it:m)
+{
+	if(it.second==2)
+	{
+		cout<<it.first<<it.first;
+	}
+	else
+	{
+		c.push_back(it.first);
+	}
+}
+for(int i=0;i<c.size();i++)
+{
+	cout<<c[i];
+}
+cout<<endl;
+
 }
 
 int32_t main()
 {
-    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+	ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
 
 #ifndef ONLINE_JUDGE
-    freopen("input.txt",  "r",  stdin);
-    freopen("output.txt", "w", stdout);
+	freopen("input.txt",  "r",  stdin);
+	freopen("output.txt", "w", stdout);
 #endif
 
-    clock_t z = clock();
+	clock_t z = clock();
 
-    int t = 1;
-    // cin >> t;
-    while (t--) solve();
+	int t = 1;
+	 cin >> t;
+	while (t--) solve();
 
-    cerr << "Run Time : " << ((double)(clock() - z) / CLOCKS_PER_SEC);
+	cerr << "Run Time : " << ((double)(clock() - z) / CLOCKS_PER_SEC);
 
-    return 0;
+	return 0;
 }
